@@ -1,0 +1,122 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Bebas Neue", "Impact", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-flame: var(--flame);
+  --color-ember: var(--ember);
+  --color-charcoal: var(--charcoal);
+  --color-cream: var(--cream);
+  --color-whatsapp: var(--whatsapp);
+  --color-drink-background: var(--drink-background);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.14 0.01 30);
+  --foreground: oklch(0.97 0.02 80);
+  --card: oklch(0.18 0.015 30);
+  --card-foreground: oklch(0.97 0.02 80);
+  --popover: oklch(0.18 0.015 30);
+  --popover-foreground: oklch(0.97 0.02 80);
+  --primary: oklch(0.62 0.22 28);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.78 0.18 70);
+  --secondary-foreground: oklch(0.15 0.02 30);
+  --muted: oklch(0.22 0.015 30);
+  --muted-foreground: oklch(0.72 0.03 60);
+  --accent: oklch(0.78 0.18 70);
+  --accent-foreground: oklch(0.15 0.02 30);
+  --destructive: oklch(0.62 0.22 28);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.28 0.02 30);
+  --input: oklch(0.28 0.02 30);
+  --ring: oklch(0.62 0.22 28);
+
+  --flame: oklch(0.7 0.22 40);
+  --ember: oklch(0.62 0.22 28);
+  --charcoal: oklch(0.12 0.01 30);
+  --cream: oklch(0.97 0.03 85);
+  --whatsapp: oklch(0.66 0.18 145);
+  --drink-background: oklch(0 0 0);
+
+  --gradient-flame: linear-gradient(135deg, oklch(0.7 0.22 40), oklch(0.55 0.24 20));
+  --gradient-ember: radial-gradient(ellipse at top, oklch(0.35 0.15 35 / 0.5), transparent 60%);
+  --shadow-flame: 0 20px 60px -15px oklch(0.62 0.22 28 / 0.55);
+  --shadow-card: 0 10px 40px -10px oklch(0 0 0 / 0.5);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(ellipse at top right, oklch(0.62 0.22 28 / 0.12), transparent 50%),
+      radial-gradient(ellipse at bottom left, oklch(0.78 0.18 70 / 0.08), transparent 50%);
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer utilities {
+  .text-gradient-flame {
+    background: var(--gradient-flame);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-flame { background: var(--gradient-flame); }
+  .shadow-flame { box-shadow: var(--shadow-flame); }
+  .shadow-card-soft { box-shadow: var(--shadow-card); }
+  .grain::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(oklch(1 0 0 / 0.03) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+  }
+}
+
+@keyframes flame-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.92; }
+}
+.animate-flame { animation: flame-pulse 3s ease-in-out infinite; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.8s ease-out both; }
